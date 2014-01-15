@@ -1,0 +1,11 @@
+.highlightClass { background:#ff0000;}
+.filterButton {   
+	background-color:#CCCCCC;
+	border-style:solid;
+	border-color:#CCCCCC;
+}   
+ .activeFilterButton {
+	background-color:#FFCC00;
+	border-style:solid;
+	border-color:#FF9900;
+}
