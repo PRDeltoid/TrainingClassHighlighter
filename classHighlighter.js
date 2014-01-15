@@ -39,157 +39,157 @@ timeFilterObjArray.push(new timeFilterObj(false,".730"));
 otherFilterObjArray.push(new otherFilterObj(false,".smallbreed"));
 otherFilterObjArray.push(new otherFilterObj(false,".senior"));
 
-jQuery(document).ready(function(){ 
+$(document).ready(function(){ 
 	//Highlight 10:00 classes
-	jQuery('#highlight1000').on('click', function() { 
+	$('#highlight1000').on('click', function() { 
 		if(timeFilterObjArray[0].state == true) {
 			timeFilterObjArray[0].state = false;			
-			jQuery(".activeFilterButton").filter("#highlight1000").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlight1000").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[0].state = true;
-			jQuery(".filterButton").filter("#highlight1000").addClass("activeFilterButton")			
+			$(".filterButton").filter("#highlight1000").addClass("activeFilterButton")			
 		}		
 		wipeHighlights();		
-		jQuery(determineHighlightFilters()).addClass("highlightClass");	
+		$(determineHighlightFilters()).addClass("highlightClass");	
 	}); 
 
 	//Highlight 11:15 classes
-	jQuery('#highlight1115').on('click', function() { 
+	$('#highlight1115').on('click', function() { 
 		if(timeFilterObjArray[1].state == true) {
 			timeFilterObjArray[1].state = false;			
-			jQuery(".activeFilterButton").filter("#highlight1115").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlight1115").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[1].state = true;
-			jQuery(".filterButton").filter("#highlight1115").addClass("activeFilterButton")			
+			$(".filterButton").filter("#highlight1115").addClass("activeFilterButton")			
 		}		
 		wipeHighlights();		
-		jQuery(determineHighlightFilters()).addClass("highlightClass");	
+		$(determineHighlightFilters()).addClass("highlightClass");	
 	}); 
 
 	//Highlight 6:15 classes
-	jQuery('#highlight615').on('click', function() { 
+	$('#highlight615').on('click', function() { 
 		if(timeFilterObjArray[2].state == true) {
 			timeFilterObjArray[2].state = false;			
-			jQuery(".activeFilterButton").filter("#highlight615").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlight615").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[2].state = true;
-			jQuery(".filterButton").filter("#highlight615").addClass("activeFilterButton")			
+			$(".filterButton").filter("#highlight615").addClass("activeFilterButton")			
 		}		
 		wipeHighlights();		
-		jQuery(determineHighlightFilters()).addClass("highlightClass");	
+		$(determineHighlightFilters()).addClass("highlightClass");	
 	}); 
 	
 	//Highlight 7:30 classes
-	jQuery('#highlight730').on('click', function() { 
+	$('#highlight730').on('click', function() { 
 		if(timeFilterObjArray[3].state == true) {
 			timeFilterObjArray[3].state = false;			
-			jQuery(".activeFilterButton").filter("#highlight730").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlight730").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[3].state = true;
-			jQuery(".filterButton").filter("#highlight730").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlight730").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	}); 
 
 //highlight smallbreed classes	
-	jQuery('#highlightSmallbreedOnly').on('click', function() { 
+	$('#highlightSmallbreedOnly').on('click', function() { 
 		if(otherFilterObjArray[0].state == true) {
 			otherFilterObjArray[0].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightSmallbreedOnly").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightSmallbreedOnly").removeClass("activeFilterButton");
 		} else {
 			otherFilterObjArray[0].state = true;
-			jQuery(".filterButton").filter("#highlightSmallbreedOnly").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightSmallbreedOnly").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	}); 
 	
 	//highlight senior classes
-	jQuery('#highlightSeniorOnly').on('click', function() { 
+	$('#highlightSeniorOnly').on('click', function() { 
 		if(otherFilterObjArray[1].state == true) {
 			otherFilterObjArray[1].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightSeniorOnly").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightSeniorOnly").removeClass("activeFilterButton");
 		} else {
 			otherFilterObjArray[1].state = true;
-			jQuery(".filterButton").filter("#highlightSeniorOnly").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightSeniorOnly").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	}); 
 
 	//Highlight Monday clicked
-	jQuery('#highlightMonday').on('click', function() { 
+	$('#highlightMonday').on('click', function() { 
 		if(dayFilterObjArray[0].state == true) {
 			dayFilterObjArray[0].state = false;
-			jQuery(".activeFilterButton").filter("#highlightMonday").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightMonday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[0].state = true;
-			jQuery(".filterButton").filter("#highlightMonday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightMonday").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	}); 
 	
 	//Highlight Tuesday clicked
-	jQuery('#highlightTuesday').on('click', function() { 
+	$('#highlightTuesday').on('click', function() { 
 		if(dayFilterObjArray[1].state == true) {
 			dayFilterObjArray[1].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightTuesday").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightTuesday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[1].state = true;
-			jQuery(".filterButton").filter("#highlightTuesday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightTuesday").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	});
 		//Highlight Wednesday clicked
-	jQuery('#highlightWednesday').on('click', function() { 
+	$('#highlightWednesday').on('click', function() { 
 		if(dayFilterObjArray[2].state == true) {
 			dayFilterObjArray[2].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightWednesday").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightWednesday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[2].state = true;
-			jQuery(".filterButton").filter("#highlightWednesday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightWednesday").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	});
 		//Highlight Thursday clicked
-	jQuery('#highlightThursday').on('click', function() { 
+	$('#highlightThursday').on('click', function() { 
 		if(dayFilterObjArray[3].state == true) {
 			dayFilterObjArray[3].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightThursday").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightThursday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[3].state = true;
-			jQuery(".filterButton").filter("#highlightThursday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightThursday").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	});
 		//Highlight Friday clicked
-	jQuery('#highlightFriday').on('click', function() { 
+	$('#highlightFriday').on('click', function() { 
 		if(dayFilterObjArray[4].state == true) {
 			dayFilterObjArray[4].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightFriday").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightFriday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[4].state = true;
-			jQuery(".filterButton").filter("#highlightFriday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightFriday").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	});
 		//Highlight Saturday clicked
-	jQuery('#highlightSaturday').on('click', function() { 
+	$('#highlightSaturday').on('click', function() { 
 		if(dayFilterObjArray[5].state == true) {
 			dayFilterObjArray[5].state = false;			
-			jQuery(".activeFilterButton").filter("#highlightSaturday").removeClass("activeFilterButton");
+			$(".activeFilterButton").filter("#highlightSaturday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[5].state = true;
-			jQuery(".filterButton").filter("#highlightSaturday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightSaturday").addClass("activeFilterButton")
 		}	
 		wipeHighlights();
-		jQuery(determineHighlightFilters()).addClass("highlightClass");			
+		$(determineHighlightFilters()).addClass("highlightClass");			
 	});
 });
 
@@ -283,7 +283,7 @@ function determineHighlightFilters() {
 }
 
 function wipeHighlights() {
-	jQuery(".highlightClass").removeClass("highlightClass");
+	$(".highlightClass").removeClass("highlightClass");
 }
 
 function checkTimeFilterSet() {
