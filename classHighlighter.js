@@ -5,6 +5,9 @@ var timeFilterObjArray = [];
 var otherFilterObj;
 var otherFilterObjArray = [];
 
+var CLOSED_HEIGHT = 26;
+var OPEN_HEIGHT = 105;
+
 function dayFilterObj(stateIn,filterValueIn) {
 	this.state = stateIn;
 	this.filterValue = filterValueIn;
@@ -26,8 +29,16 @@ $(document).ready(function(){
 	$('.filterButton').on('click',function() {		
 		changeFilterState(this);
 		wipeHighlights();
-		$(determineHighlightFilters()).addClass("highlightClass");
+		var highlightFilters = determineHighlightFilters();
+		if(highlightFilters!="") {
+			$(highlightFilters).addClass("highlightClass");
+		}
+
 	});	
+	
+	$('#showHide').on('click',function() {
+		showHideFilters(this);
+	});
 });
 
 function determineHighlightFilters() {	
@@ -80,7 +91,7 @@ function stitchFilterArray(filterArray) {
 		if(it>0) {
 			filterValue += ",";
 		}
-		filterValue += filterArray[it];
+		filterValue += filterArray[it]+":not(.full)";
 	}
 	return filterValue;	
 }
@@ -118,15 +129,15 @@ function changeFilterState(buttonClicked) {
 	switch(buttonClicked.id) {
 		case 'dayButton':
 			dayFilterObjArray[value].state = !dayFilterObjArray[value].state;
-			console.log(dayFilterObjArray[value]);
+			//console.log(dayFilterObjArray[value]);
 			break;
 		case 'timeButton':
 			timeFilterObjArray[value].state = !timeFilterObjArray[value].state;
-			console.log(timeFilterObjArray[value]);
+			//console.log(timeFilterObjArray[value]);
 			break;
 		case 'otherButton':
 			otherFilterObjArray[value].state = !otherFilterObjArray[value].state;
-			console.log(otherFilterObjArray[value]);
+			//console.log(otherFilterObjArray[value]);
 			break;
 		default: 
 			console.log('Error: Unknown Button Type Selected');
@@ -163,3 +174,19 @@ function initializeFilterArrays() {
 	otherFilterObjArray.push(new otherFilterObj(false,".senior"));
 }
 
+function showHideFilters(obj) {
+	jqueryObj = $(obj);
+	if(jqueryObj.data('size')=="min") {
+		jqueryObj.data('size','max').parents('#filterButtonArea').animate({
+			height: OPEN_HEIGHT + "px"
+		},1000)
+		.children('#filterButtons').fadeIn('slow');
+	} else if(jqueryObj.data('size')=="max") {
+		jqueryObj.siblings('#filterButtons').fadeOut('slow', function() {
+			jqueryObj.data('size','min').parents('#filterButtonArea').animate({
+				height: CLOSED_HEIGHT + "px"
+			},1000);
+		});
+	}
+	
+}

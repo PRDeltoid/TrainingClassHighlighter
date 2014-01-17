@@ -1,4 +1,4 @@
-<link rel='stylesheet' type="text/css" href="./style.css">
+<link rel='stylesheet' type="text/css" href="./classHighlighterStyle.css">
 	
 <script src="./js/jquery-1.9.1.js"></script>	
 <script src="./js/jquery-ui-1.10.3.custom.js"></script>
@@ -16,11 +16,11 @@
 </tr>
 </thead>
 <tbody>
-	<tr class="monday 615">
-	<td>Basic</td>
-	<td>Monday</td>
-	<td>October 30 - December 11</td>
-	<td>6:15PM - 7:15PM</td>
+	<tr class="monday 615 full">
+	<td><span style="color: #ff0000;">Basic <em>(Sorry, class is full)</em></span></td>
+	<td><span style="color: #ff0000;">Monday</span></td>
+	<td><span style="color: #ff0000;">October 30 - December 11</span></td>
+	<td><span style="color: #ff0000;">6:15PM - 7:15PM</span></td>
 	</tr>
 	
 	<tr class="monday 730">
@@ -94,22 +94,23 @@
 	</tr>
 </tbody>
 </table>
-
-<p>You can use the filters below to highlight your desired classes</p>
 <div id="filterButtonArea">
-	<button id="dayButton" value="0" class="filterButton">Monday</button>
-	<button id="dayButton" value="1" class="filterButton">Tuesday</button>
-	<button id="dayButton" value="2" class="filterButton">Wednesday</button>
-	<button id="dayButton" value="3" class="filterButton">Thursday</button>
-	<button id="dayButton" value="4" class="filterButton">Friday</button>
-	<button id="dayButton" value="5" class="filterButton">Saturday</button>
-	<br>
-	<button id="timeButton" value="0" class="filterButton">10:00AM - 11:00AM</button>
-	<!--<button id="timeButton" value="1" class="filterButton">11:15AM - 12:15PM</button>-->
-	<button id="timeButton" value="2" class="filterButton">6:15PM - 7:15PM</button>
-	<button id="timeButton" value="3" class="filterButton">7:30PM - 8:30PM</button>
-	<br>
-	<button id="otherButton" value="0" class="filterButton">Small Breed Only</button>
-	<button id="otherButton" value="1" class="filterButton">Senior Only</button>
-	
+<p>You can use the filters below to highlight your desired classes</p>
+	<div id="showHide" data-size="max"></div>
+	<div id="filterButtons">
+		<button id="dayButton" value="0" class="filterButton">Monday</button>
+		<button id="dayButton" value="1" class="filterButton">Tuesday</button>
+		<button id="dayButton" value="2" class="filterButton">Wednesday</button>
+		<button id="dayButton" value="3" class="filterButton">Thursday</button>
+		<button id="dayButton" value="4" class="filterButton">Friday</button>
+		<button id="dayButton" value="5" class="filterButton">Saturday</button>
+		<br>
+		<button id="timeButton" value="0" class="filterButton">10:00AM - 11:00AM</button>
+		<!--<button id="timeButton" value="1" class="filterButton">11:15AM - 12:15PM</button>-->
+		<button id="timeButton" value="2" class="filterButton">6:15PM - 7:15PM</button>
+		<button id="timeButton" value="3" class="filterButton">7:30PM - 8:30PM</button>
+		<br>
+		<button id="otherButton" value="0" class="filterButton">Small Breed Only</button>
+		<button id="otherButton" value="1" class="filterButton">Senior Only</button>	
+	</div>
 </div>

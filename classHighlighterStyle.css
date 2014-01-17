@@ -14,12 +14,16 @@
 #filterButtonArea {
 	border: 1px solid #000000;
 	width:530px;
+	height:105px;
 }
 
 p{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	margin: 3px 3px;
+	float:left;
+	width:500px
 }
+
 
 table#one-column-emphasis {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -53,4 +57,13 @@ tbody {
 	outline: 0;
 	padding: 0;
 	vertical-align: baseline;
+}
+
+#showHide {
+	background-image:url('./img/expand_arrow.gif');
+	width:15px;
+	height:15px;
+	margin:5px 5px 0px 0px;
+	float:right;
+	border: 1px dotted #442D0E;
 }
