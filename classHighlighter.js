@@ -30,9 +30,9 @@ $(document).ready(function(){
 	});	
 });
 
-function determineHighlightFilters() {
-	
+function determineHighlightFilters() {	
 	var filterValueArray = [];
+	
 	if(checkDayFilterSet()) {
 		for(var dayIterator=0;dayIterator<dayFilterObjArray.length;dayIterator++) {
 			if(dayFilterObjArray[dayIterator].state==true && checkTimeFilterSet()) {			
@@ -53,15 +53,21 @@ function determineHighlightFilters() {
 		}
 	}
 	
-	//append other filters to the end of every current filter
-	if(checkOtherFilterSet()) {
+	//append other filters to the end of every current filter (if other filters are set). Otherwise, load just the filter.
+	if(checkOtherFilterSet() && (checkTimeFilterSet() || checkDayFilterSet())) {
 		for(var otherIterator=0;otherIterator<otherFilterObjArray.length;otherIterator++) {
 			if(otherFilterObjArray[otherIterator].state==true) {
 				for(var it=0;it<filterValueArray.length;it++) {
-					filterValueArray[it] += " "+otherFilterObjArray[otherIterator].filterValue;
+					filterValueArray[it] += otherFilterObjArray[otherIterator].filterValue;
 				}
 			}
-		} 
+		}
+	} else if(checkOtherFilterSet() && !checkTimeFilterSet() && !checkDayFilterSet()) {
+		for(var otherIterator=0;otherIterator<otherFilterObjArray.length;otherIterator++) {
+			if(otherFilterObjArray[otherIterator].state==true) {
+				filterValueArray.push(otherFilterObjArray[otherIterator].filterValue);
+			}
+		}
 	}
 	
 	console.log(stitchFilterArray(filterValueArray));

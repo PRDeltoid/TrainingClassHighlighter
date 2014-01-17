@@ -1,4 +1,4 @@
-.highlightClass { background:#ff0000;}
+.highlightClass { background:rgba(255, 235, 0, 0.5);}
 
 .filterButton {   
 	background-color:#CCCCCC;
@@ -6,12 +6,46 @@
 	border-color:#CCCCCC;
 }   
  .activeFilterButton {
-	background-color:#FFCC00;
-	border-style:solid;
-	border-color:#FF9900;
+	background-color: #FFF081;
+	border-style: solid;
+	border-color: #BE760A;
 }
 
 #filterButtonArea {
 	border: 1px solid #000000;
 	width:500px;
+}
+
+table#one-column-emphasis {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	margin: 20px 0;
+	width: 850px;
+	text-align: left;
+	line-height: 1.25;
+	border-collapse: collapse;
+}
+
+#one-column-emphasis td {
+	padding: 5px 15px;
+	color: #373737;
+	border-top: 1px solid #CCCCCC;
+	vertical-align: text-top;
+}
+
+thead {
+	background: #BE9969;
+	color: #FFF;
+}
+
+tbody {
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
 }
