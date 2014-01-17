@@ -47,7 +47,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlight1000").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[0].state = true;
-			$(".filterButton").filter("#highlight1000").addClass("activeFilterButton")			
+			$(".filterButton").filter("#highlight1000").addClass("activeFilterButton");			
 		}		
 		wipeHighlights();		
 		$(determineHighlightFilters()).addClass("highlightClass");	
@@ -60,7 +60,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlight1115").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[1].state = true;
-			$(".filterButton").filter("#highlight1115").addClass("activeFilterButton")			
+			$(".filterButton").filter("#highlight1115").addClass("activeFilterButton");			
 		}		
 		wipeHighlights();		
 		$(determineHighlightFilters()).addClass("highlightClass");	
@@ -73,7 +73,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlight615").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[2].state = true;
-			$(".filterButton").filter("#highlight615").addClass("activeFilterButton")			
+			$(".filterButton").filter("#highlight615").addClass("activeFilterButton");			
 		}		
 		wipeHighlights();		
 		$(determineHighlightFilters()).addClass("highlightClass");	
@@ -86,7 +86,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlight730").removeClass("activeFilterButton");
 		} else {
 			timeFilterObjArray[3].state = true;
-			$(".filterButton").filter("#highlight730").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlight730").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -99,7 +99,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightSmallbreedOnly").removeClass("activeFilterButton");
 		} else {
 			otherFilterObjArray[0].state = true;
-			$(".filterButton").filter("#highlightSmallbreedOnly").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightSmallbreedOnly").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -112,7 +112,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightSeniorOnly").removeClass("activeFilterButton");
 		} else {
 			otherFilterObjArray[1].state = true;
-			$(".filterButton").filter("#highlightSeniorOnly").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightSeniorOnly").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -125,7 +125,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightMonday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[0].state = true;
-			$(".filterButton").filter("#highlightMonday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightMonday").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -138,7 +138,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightTuesday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[1].state = true;
-			$(".filterButton").filter("#highlightTuesday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightTuesday").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -150,7 +150,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightWednesday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[2].state = true;
-			$(".filterButton").filter("#highlightWednesday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightWednesday").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -162,7 +162,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightThursday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[3].state = true;
-			$(".filterButton").filter("#highlightThursday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightThursday").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -174,7 +174,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightFriday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[4].state = true;
-			$(".filterButton").filter("#highlightFriday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightFriday").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -186,7 +186,7 @@ $(document).ready(function(){
 			$(".activeFilterButton").filter("#highlightSaturday").removeClass("activeFilterButton");
 		} else {
 			dayFilterObjArray[5].state = true;
-			$(".filterButton").filter("#highlightSaturday").addClass("activeFilterButton")
+			$(".filterButton").filter("#highlightSaturday").addClass("activeFilterButton");
 		}	
 		wipeHighlights();
 		$(determineHighlightFilters()).addClass("highlightClass");			
@@ -207,17 +207,17 @@ function determineHighlightFilters() {
 	timeFilterArrayLength = timeFilterObjArray.length-1;
 	otherFilterArrayLength = otherFilterObjArray.length-1;
 	
-	for(it3=0;it3 <= dayFilterArrayLength;it3++) {
+	for(var it3=0;it3 <= dayFilterArrayLength;it3++) {
 		//determine if the day-of-the-week filter is true
 		if(dayFilterObjArray[it3].state == true) {
-			dayFilterCounter++
+			dayFilterCounter++;
 			if(dayFilterCounter >= 2 && dayFilterCounter < dayFilterArrayLength+1) {
 				filterText = filterText + ",";
 			}
 			//If true, add the filter value, and then determine time-of-day filters
 			if(checkTimeFilterSet() == true) {
 				var timeFilterCounter = 0;
-				for(it2=0;it2<=timeFilterArrayLength;it2++) {
+				for(var it2=0;it2<=timeFilterArrayLength;it2++) {
 					//If true, add to the last line				
 					if(timeFilterObjArray[it2].state==true) {						
 						timeFilterCounter++;
@@ -226,7 +226,7 @@ function determineHighlightFilters() {
 							filterText = filterText + ",";	
 						}
 						filterText = filterText + dayFilterObjArray[it3].filterValue + timeFilterObjArray[it2].filterValue;
-						for(it4=0;it4<=otherFilterArrayLength;it4++) {
+						for(var it4=0;it4<=otherFilterArrayLength;it4++) {
 							otherFilterCounter = 0;
 							if(otherFilterObjArray[it4].state==true) {
 								if(otherFilterCounter >= 2) {
@@ -290,8 +290,8 @@ function checkTimeFilterSet() {
 	timeFilterSet = false;
 	arrayLength = timeFilterObjArray.length-1;
 
-	for(i=0;i<arrayLength;i++) {
-		if(timeFilterObjArray[i].state == true){
+	for(var it=0;it<arrayLength;it++) {
+		if(timeFilterObjArray[it].state == true){
 			timeFilterSet = true;
 		}
 	}
