@@ -30,106 +30,60 @@ $(document).ready(function(){
 	});	
 });
 
-/*function determineHighlightFilters() {
-
-	var filterText = "";
-	var dayFilterCounter = 0;
-
-	dayFilterArrayLength = dayFilterObjArray.length-1;
-	timeFilterArrayLength = timeFilterObjArray.length-1;
-	otherFilterArrayLength = otherFilterObjArray.length-1;
-	
-	for(var it3=0;it3 <= dayFilterArrayLength;it3++) {
-		//determine if the day-of-the-week filter is true
-		if(dayFilterObjArray[it3].state == true) {
-			dayFilterCounter++;
-			if(dayFilterCounter >= 2 && dayFilterCounter < dayFilterArrayLength+1) {
-				filterText = filterText + ",";
-			}
-			//If true, add the filter value, and then determine time-of-day filters
-			if(checkTimeFilterSet() == true) {
-				var timeFilterCounter = 0;
-				for(var it2=0;it2<=timeFilterArrayLength;it2++) {
-					//If true, add to the last line				
-					if(timeFilterObjArray[it2].state==true) {						
-						timeFilterCounter++;
-						if(timeFilterCounter >= 2) {
-							// add an "OR" comma to separate different times for a single day (ie: ".monday.615,.monday.730" if both 6:15 and 7:30 are selected
-							filterText = filterText + ",";	
-						}
-						filterText = filterText + dayFilterObjArray[it3].filterValue + timeFilterObjArray[it2].filterValue;
-						for(var it4=0;it4<=otherFilterArrayLength;it4++) {
-							otherFilterCounter = 0;
-							if(otherFilterObjArray[it4].state==true) {
-								if(otherFilterCounter >= 2) {
-									filterText = filterText + ",";	
-								}
-							filterText = filterText + otherFilterObjArray[it4].filterValue;
-							}
-						}
-					}
-				}
-			} else {
-				filterText = filterText + dayFilterObjArray[it3].filterValue;
-			}
-			
-		} else if (dayFilterObjArray[it3].state == false) { //IF THE DAY ISN'T SET, GO STRAIGHT INTO TIME FILTERS
-			if(checkTimeFilterSet() == true) {
-				var timeFilterCounter = 0;
-				for(it2=0;it2<=timeFilterArrayLength;it2++) {
-					//If true, add to the last line				
-					if(timeFilterObjArray[it2].state==true) {						
-						timeFilterCounter++;
-						if(timeFilterCounter >= 2) {
-							// add an "OR" comma to separate different times for a single day (ie: ".monday.615,.monday.730" if both 6:15 and 7:30 are selected
-							filterText = filterText + ",";	
-						}
-						filterText = filterText + timeFilterObjArray[it2].filterValue;
-						for(it4=0;it4<=otherFilterArrayLength;it4++) {
-							otherFilterCounter = 0;
-							if(otherFilterObjArray[it4].state==true) {
-								if(otherFilterCounter >= 2) {
-									filterText = filterText + ",";	
-								}
-							filterText = filterText + otherFilterObjArray[it4].filterValue;
-							}
-						}
-					}
-				}
-			} else {		//IF TIME ISN'T SET, GO STRAIGHT TO MISC/OTHER FILTERS
-				for(it4=0;it4<=otherFilterArrayLength;it4++) {
-					otherFilterCounter = 0;
-					if(otherFilterObjArray[it4].state==true) {
-						if(otherFilterCounter >= 2) {
-							filterText = filterText + ",";	
-						}
-						filterText = filterText + otherFilterObjArray[it4].filterValue;
-					}
-				}	
-			}
-		}
-	}
-	
-	console.log(filterText);
-	return filterText;
-}*/
-
 function determineHighlightFilters() {
-	var filterValueArray = [];
-	var compoundFilterValue = "";
 	
-	for(var dayIterator=0;dayIterator<dayFilterObjArray.length;dayIterator++) {
-		if(dayFilterObjArray[dayIterator].state==true) {
-			for(var timeIterator=0;timeIterator<timeFilterObjArray.length;timeIterator++) {				
-				if(timeFilterObjArray[dayIterator].state==true) {
-					filterValueArray[dayIterator] = dayFilterObjArray[dayIterator].filterValue;
+	var filterValueArray = [];
+	if(checkDayFilterSet()) {
+		for(var dayIterator=0;dayIterator<dayFilterObjArray.length;dayIterator++) {
+			if(dayFilterObjArray[dayIterator].state==true && checkTimeFilterSet()) {			
+				for(var timeIterator=0;timeIterator<timeFilterObjArray.length;timeIterator++) {				
+					if(timeFilterObjArray[timeIterator].state==true) {
+						filterValueArray.push(dayFilterObjArray[dayIterator].filterValue+timeFilterObjArray[timeIterator].filterValue);					
+					}
 				}
+			} else if(dayFilterObjArray[dayIterator].state==true && !checkTimeFilterSet()) {
+				filterValueArray.push(dayFilterObjArray[dayIterator].filterValue);
+			}
+		}
+	} else if(checkTimeFilterSet() && !checkDayFilterSet()) {
+		for(var timeIterator=0;timeIterator<timeFilterObjArray.length;timeIterator++) {				
+			if(timeFilterObjArray[timeIterator].state==true) {
+				filterValueArray.push(timeFilterObjArray[timeIterator].filterValue);					
 			}
 		}
 	}
 	
-	console.log(compoundFilterValue);
-	return compoundFilterValue;
+	//append other filters to the end of every current filter
+	if(checkOtherFilterSet()) {
+		for(var otherIterator=0;otherIterator<otherFilterObjArray.length;otherIterator++) {
+			if(otherFilterObjArray[otherIterator].state==true) {
+				for(var it=0;it<filterValueArray.length;it++) {
+					filterValueArray[it] += " "+otherFilterObjArray[otherIterator].filterValue;
+				}
+			}
+		} 
+	}
+	
+	console.log(stitchFilterArray(filterValueArray));
+	return stitchFilterArray(filterValueArray);
+}
+
+function stitchFilterArray(filterArray) {
+	var filterValue = "";
+	for(var it=0;it<filterArray.length;it++) {
+		if(it>0) {
+			filterValue += ",";
+		}
+		filterValue += filterArray[it];
+	}
+	return filterValue;	
+}
+
+function checkOtherFilterSet() {
+	for(var it=0;it<otherFilterObjArray.length;it++) {
+		if(otherFilterObjArray[it].state == true){	return true;	} 
+	}	
+	return false;
 }
 
 function checkTimeFilterSet() {
@@ -140,9 +94,18 @@ function checkTimeFilterSet() {
 	return false;
 }
 
+function checkDayFilterSet() {
+	//arrayLength = timeFilterObjArray.length-1;
+	for(var it=0;it<dayFilterObjArray.length;it++) {
+		if(dayFilterObjArray[it].state == true){	return true;	} 
+	}	
+	return false;
+}
+
 function wipeHighlights() {
 	$(".highlightClass").removeClass("highlightClass");
 }
+
 
 function changeFilterState(buttonClicked) {
 	var value = buttonClicked.value;
@@ -163,6 +126,15 @@ function changeFilterState(buttonClicked) {
 			console.log('Error: Unknown Button Type Selected');
 			break;
 	}
+	
+	//set button CSS to active state
+	jqueryButtonClicked = $(buttonClicked);
+	if(jqueryButtonClicked.hasClass('activeFilterButton')) {
+		jqueryButtonClicked.removeClass('activeFilterButton');
+	} else {
+		jqueryButtonClicked.addClass('activeFilterButton');
+	}
+	
 	return;	
 }
 
