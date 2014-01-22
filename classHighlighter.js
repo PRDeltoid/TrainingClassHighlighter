@@ -101,11 +101,11 @@ function determineHighlightFilters() {
 
 function noClassesMessage(stateTo) {
 	if(stateTo=='show') {
-		$('.no-classes').fadeIn('fast').effect("shake",{
+		$('.no-classes').stop().fadeIn('fast').effect("shake",{
 			distance:2
 		},750);
 	} else {
-		$('.no-classes').hide();
+		$('.no-classes').stop().hide();
 	}
 	
 }

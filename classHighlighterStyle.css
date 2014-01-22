@@ -21,9 +21,9 @@
 	height:105px;
 }
 
-p{
+#filters-title{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	margin: 3px 3px;
+	margin: 3px 3px !important;
 	float:left;
 	width:500px
 }
