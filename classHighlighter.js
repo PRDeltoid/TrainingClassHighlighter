@@ -25,6 +25,7 @@ function otherFilterObj(stateIn,filterValueIn) {
 
 $(document).ready(function(){ 	
 	initializeFilterArrays();
+	//$('no-class').hide();
 	
 	$('.filterButton').on('click',function() {		
 		changeFilterState(this);
@@ -40,6 +41,13 @@ $(document).ready(function(){
 		showHideFilters(this);
 	});
 });
+
+function testFilter(filter) {
+	if($(filter).length==0 && (checkTimeFilterSet() || checkDayFilterSet() || checkOtherFilterSet())) {
+		return false;
+	}
+	return true;
+}
 
 function determineHighlightFilters() {	
 	var filterValueArray = [];
@@ -80,9 +88,26 @@ function determineHighlightFilters() {
 			}
 		}
 	}
+	var stitchedFilter = stitchFilterArray(filterValueArray);
+	//console.log(stitchFilterArray(filterValueArray));
+	if(testFilter(stitchedFilter)) {
+		noClassesMessage('hide');
+		return stitchedFilter;
+	} else {
+		noClassesMessage('show');
+		return false;
+	}
+}
+
+function noClassesMessage(stateTo) {
+	if(stateTo=='show') {
+		$('.no-classes').fadeIn('fast').effect("shake",{
+			distance:2
+		},750);
+	} else {
+		$('.no-classes').hide();
+	}
 	
-	console.log(stitchFilterArray(filterValueArray));
-	return stitchFilterArray(filterValueArray);
 }
 
 function stitchFilterArray(filterArray) {
@@ -122,7 +147,6 @@ function checkDayFilterSet() {
 function wipeHighlights() {
 	$(".highlightClass").removeClass("highlightClass");
 }
-
 
 function changeFilterState(buttonClicked) {
 	var value = buttonClicked.value;

@@ -1,3 +1,7 @@
+.no-classes {color:#ff0000;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+.no-classes-placeholder { height:20px; }
+
 .highlightClass { background:rgba(255, 235, 0, 0.5);}
 
 .filterButton {   
